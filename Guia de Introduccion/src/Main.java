@@ -62,8 +62,10 @@ public class Main {
                     Guia.ejercicio16(scan);
                     break;
                 case 17:
+                    Guia.ejercicio17(scan);
                     break;
                 case 18:
+                    Guia.ejercicio18(scan);
                     break;
                 case 0:
                     corte++;
