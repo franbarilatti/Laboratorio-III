@@ -1,5 +1,6 @@
 package com.main;
 
+import classes.Cuenta;
 import classes.Empleado;
 import classes.ItemDeVenta;
 import classes.Rectangulo;
@@ -16,6 +17,7 @@ public class Main{
         //ejercicio1(scan);
         //ejercicio2(scan);
         //ejercicio3(scan);
+        ejercicio4();
     }
 
    /* 1. Modele el objeto Rectángulo con sus propiedades, ancho y alto. Ambas con valor
@@ -117,6 +119,46 @@ public class Main{
         product.showItem();
 
     }
+
+    /*4.Modele el objeto que representa la cuenta de un banco, con identificador, nombre
+    y balance. Considere los getters, setters y constructores necesarios. Tenga en
+    cuenta los siguientes métodos.
+        a. El método crédito que representa un depósito de dinero en la cuenta. Este
+        método debe devolver el balance luego de la operación.
+        b. El método débito que representa una sustracción de dinero de la cuenta.
+            Este método debe devolver el balance luego de la operación. Si el dinero en
+            la cuenta no es suficiente para cubrir la sustracción, se debe imprimir por
+            pantalla un aviso.
+        c. Un método que imprima por pantalla las características del objeto.
+        Realice las siguientes operaciones:
+                1. Inicialice una cuenta con un monto inicial de 15000.
+                2. Realice una operación de crédito de 2500.
+                3. Realice una operación de compra de 1500.
+                4. Realice una operación de compra de 30000.
+                5. Imprima por pantalla los valores de la cuenta y verifique que el balance sea
+                    correcto.*/
+    public static void ejercicio4(){
+        Cuenta account = new Cuenta(1234,"Franco Barilatti", 15000);
+
+        System.out.println("Se han acreditado $2500 a su cuenta. Saldo actual: "+ account.credit(2500));
+        System.out.println("Se ha realizado una compra por $1500. Saldo actual: "+ account.debit(2500));
+        account.debit(30000);
+
+        account.showAccount();
+
+    }
+
+    /*5. Modele el objeto Hora, teniendo en cuenta sus atributos, hora, minuto y segundo.
+    Tenga en cuenta el rango de valores aceptados para cada uno de estos.
+            a. Hora: 0 … 23
+            b. Minuto: 0 … 59
+            c. Segundo: 0 … 59
+    Considere el siguiente comportamiento:
+            1. Un método que imprima la hora bajo el siguiente formato hh:mm:ss
+               usando zero a la izquierda ejemplo 13:04:22 .
+            2. Un método que avance en 1 segundo y devuelva la instancia del objeto.
+            3. Un método que retroceda en 1 segundo y devuelva la instancia del objeto.
+            4. Instanciar el objeto y probar los métodos creados.*/
 
 }
 
