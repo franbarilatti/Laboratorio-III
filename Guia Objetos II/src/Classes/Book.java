@@ -48,6 +48,12 @@ public class Book {
         this.autor = autor;
     }
 
+    public void showBookAutor(){
+        this.autor.showAutor();
+    }
 
-
+    @Override
+    public String toString() {
+        return "El libro, " +title+" de "+autor.name+" "+autor.surname+". Se vende a "+ price +" pesos.";
+    }
 }
