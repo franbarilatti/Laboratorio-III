@@ -1,4 +1,10 @@
 package ejercicio2;
+
+import Classes.Bill;
+import Classes.Client;
+
+import javax.swing.text.BadLocationException;
+
 /*2. Nos contratan para hacer un programa que lleve el control de las ventas de un
         local. Para esto es necesario modelar la clase Cliente, que posee un atributo id
         como identificador del cliente, el mismo debe ser un valor compuesto por letras y
@@ -30,4 +36,12 @@ package ejercicio2;
             para que el mismo pueda almacenar múltiples Ítems de venta y a su vez
             calcular los montos totales con y sin el descuento aplicado.*/
 public class Ejercicio2 {
+
+    public static void resolution(){
+        Client pepe = new Client("Pepe","pepito@live.com",0.30);
+        System.out.println(pepe.toString());
+        Bill nBill = new Bill(pepe,13000);
+        System.out.println(nBill.toString());
+    }
+
 }

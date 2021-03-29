@@ -1,6 +1,7 @@
 package com.company;
 
 import ejercicio1.Ejercicio1;
+import ejercicio2.Ejercicio2;
 
 import java.util.Scanner;
 
@@ -20,8 +21,10 @@ public class Main {
                     Ejercicio1.resolution();
                     break;
                 case 2:
+                    Ejercicio2.resolution();
                     break;
                 case 3:
+
                     break;
                 case 0:
                     cut++;
