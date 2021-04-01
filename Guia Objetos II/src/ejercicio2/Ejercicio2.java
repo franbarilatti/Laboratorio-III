@@ -2,8 +2,8 @@ package ejercicio2;
 
 import Classes.Bill;
 import Classes.Client;
+import Classes.SellItem;
 
-import javax.swing.text.BadLocationException;
 
 /*2. Nos contratan para hacer un programa que lleve el control de las ventas de un
         local. Para esto es necesario modelar la clase Cliente, que posee un atributo id
@@ -40,8 +40,17 @@ public class Ejercicio2 {
     public static void resolution(){
         Client pepe = new Client("Pepe","pepito@live.com",0.30);
         System.out.println(pepe.toString());
-        Bill nBill = new Bill(pepe,13000);
+
+        SellItem[] items = new SellItem[10];
+        items[1] = new SellItem("papa","papa negra",45.99);
+        items[2] = new SellItem("coca","coca cola",220.30);
+        items[3] = new SellItem("fernet","pa la coquita",470.80);
+
+        Bill nBill = new Bill(pepe,13000,items);
+
+        nBill.showItems();
         System.out.println(nBill.toString());
+
     }
 
 }
