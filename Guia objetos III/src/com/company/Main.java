@@ -41,10 +41,10 @@ public class Main {
         System.out.println("<==== EJERCICIO 2 ====>");
         for(Person e : personas){
             if(e instanceof Student){
-                System.out.println("estudiante");
+                System.out.println(e.toString());
             }
             if (e instanceof Staff){
-                System.out.println("staff");
+                System.out.println(e.toString());
             }
         }
     }
