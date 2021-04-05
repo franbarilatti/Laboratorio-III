@@ -32,7 +32,7 @@ public class Staff extends Person {
 
     @Override
     public String toString() {
-        return toString()+
+        return super.toString()+
                 " salario: "+wage+
                 " turno: "+turn;
     }

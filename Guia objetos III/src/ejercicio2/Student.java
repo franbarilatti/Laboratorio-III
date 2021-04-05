@@ -41,7 +41,7 @@ public class Student extends Person{
 
     @Override
     public String toString() {
-        return toString()+
+        return super.toString()+
                 " año de inicio: "+ingressYear+
                 " valor de cuotas: "+ fee+
                 " carrera: "+career;

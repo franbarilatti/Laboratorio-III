@@ -47,5 +47,14 @@ public class Main {
                 System.out.println(e.toString());
             }
         }
+
+        double amount = 0;
+
+        for (Person e : personas){
+            if(e instanceof Student){
+                amount = amount + ((Student) e).getFee();
+            }
+        }
+        System.out.println("La isntitucion ganara: "+amount);
     }
 }
