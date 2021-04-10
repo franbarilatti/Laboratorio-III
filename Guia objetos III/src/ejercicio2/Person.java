@@ -23,6 +23,9 @@ public class Person {
         return dni;
     }
 
+    public void setDni(String dni){
+        this.dni = dni;
+    }
 
     public String getName() {
         return name;
@@ -50,6 +53,10 @@ public class Person {
 
     public String getAdress() {
         return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     @Override

@@ -16,8 +16,9 @@ public class Circle {
         return radio;
     }
 
-    public void setRadio(double radio) {
+    public double setRadio(double radio) {
         this.radio = radio;
+        return radio;
     }
 
     public String getColor() {
