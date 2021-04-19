@@ -12,6 +12,7 @@ public class Movie {
     public String countrie;
     public String description;
     public int stock;
+    public int rents;
 
     //-------CONSTRUCTORS-------//
     public Movie() {

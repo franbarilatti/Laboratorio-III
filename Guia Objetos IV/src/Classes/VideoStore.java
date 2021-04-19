@@ -1,5 +1,7 @@
 package Classes;
 
+import java.time.Clock;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class VideoStore {
@@ -36,13 +38,10 @@ public class VideoStore {
         this.clients = clients;
     }
 
-    public ArrayList<Rental> getRents() {
-        return rents;
-    }
+    public ArrayList<Rental> getRents() { return rents; }
 
-    public void setRents(ArrayList<Rental> rents) {
-        this.rents = rents;
-    }
+    public void setRents(ArrayList<Rental> rents) { this.rents = rents; }
+
 
     //-------METHODS-------//
 
@@ -53,5 +52,37 @@ public class VideoStore {
                 "\nClients= " + clients +
                 "\nCents= " + rents +
                 "\n}";
+    }
+
+    public ArrayList<Rental> addClientRent(Rental newRent){
+
+    }
+
+    public void showRent(){
+
+        for (Rental rent : this.rents){
+            System.out.println(rent.toString());
+        }
+    }
+
+    public void rentsToDay(){
+        for(Rental rent : this.rents){
+            if (rent.returnDate.equals(LocalDate.now(Clock.systemDefaultZone()))){
+                System.out.println(rent.toString());
+            }
+        }
+    }
+
+    public void showLastClientRent(){
+        int index;
+        for(Client c : this.clients){
+            for(index = 0;index < 10;index++){
+                c.showRent();
+            }
+        }
+    }
+
+    public void showMostRentMovies(){
+
     }
 }

@@ -1,5 +1,8 @@
 package Classes;
 
+import javax.management.remote.NotificationResult;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Client {
@@ -9,17 +12,19 @@ public class Client {
     public String name;
     public String phone;
     public String adress;
+    ArrayList<Rental> rents;
 
     //-------CONSTRUCTORS-------//
 
     public Client() {
     }
 
-    public Client(UUID id, String name, String phone, String adress) {
+    public Client(UUID id, String name, String phone, String adress,ArrayList<Rental> rents) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.phone = phone;
         this.adress = adress;
+        this.rents = rents;
     }
 
     //-------GETTERS AND SETTERS-------//
@@ -56,6 +61,13 @@ public class Client {
         this.adress = adress;
     }
 
+    public ArrayList<Rental> getRents() {
+        return rents;
+    }
+
+    public void setRents(ArrayList<Rental> rents) {
+        this.rents = rents;
+    }
 
     //-------METHODS-------//
 
@@ -67,6 +79,30 @@ public class Client {
                 "\nPhone= " + phone +
                 "\nAdress= " + adress +
                 "\n}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Client){
+            Client other = (Client) obj;
+            if (this.
+        }
+    }
+
+
+    public ArrayList<Rental> addRent(Rental newRent){
+        this.rents.add(newRent);
+        return rents;
+    }
+
+    public void showRent(){
+        System.out.println(rents.toString());
+    }
+
+    public void showAllRents(){
+        for (Rental rent : this.rents){
+            System.out.println(rent.toString());
+        }
     }
 }
 
