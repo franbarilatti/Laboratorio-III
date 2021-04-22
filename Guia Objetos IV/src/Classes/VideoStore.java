@@ -4,12 +4,13 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.lang.String;
+import java.util.List;
 
 public class VideoStore {
     //-------ATTRIBUTES-------//
-    public ArrayList<Movie> movies;
-    public ArrayList<Client> clients;
-    public ArrayList<Rental> rents;
+    private List<Movie> movies = new ArrayList<>();
+    private List<Client> clients = new ArrayList<>();
+    private List<Rental> rents = new ArrayList<>();
 
     //-------CONSTRUCTORS-------//
 
@@ -39,9 +40,13 @@ public class VideoStore {
         this.clients = clients;
     }
 
-    public ArrayList<Rental> getRents() { return rents; }
+    public ArrayList<Rental> getRents() {
+        return rents;
+    }
 
-    public void setRents(ArrayList<Rental> rents) { this.rents = rents; }
+    public void setRents(ArrayList<Rental> rents) {
+        this.rents = rents;
+    }
 
 
     //-------METHODS-------//
@@ -61,33 +66,33 @@ public class VideoStore {
 
     }*/
 
-    public void addClientRent(Rental newRent){
+    public void addClientRent(Rental newRent) {
         rents.add(newRent);
     }
 
-    public void addRent(Rental newRent){
+    public void addRent(Rental newRent) {
         rents.add(newRent);
     }
 
-    public void showRent(){
+    public void showRent() {
 
-        for (Rental rent : this.rents){
+        for (Rental rent : this.rents) {
             System.out.println(rent.toString());
         }
     }
 
-    public void rentsToDay(){
-        for(Rental rent : this.rents){
-            if (rent.returnDate.equals(LocalDate.now(Clock.systemDefaultZone()))){
+    public void rentsToDay() {
+        for (Rental rent : this.rents) {
+            if (rent.returnDate.equals(LocalDate.now(Clock.systemDefaultZone()))) {
                 System.out.println(rent.toString());
             }
         }
     }
 
-    public void showLastClientRent(){
+    public void showLastClientRent() {
         int index;
-        for(Client c : this.clients){
-            for(index = 0;index < 10;index++){
+        for (Client c : this.clients) {
+            for (index = 0; index < 10; index++) {
                 c.showRent();
             }
         }
@@ -98,15 +103,14 @@ public class VideoStore {
     }*/
 
     //-------MOVIE METHODS-------//
-    public void addMovie(Movie newMovie){
-        movies.add(newMovie);
+    public void addMovie(Movie newMovie) {
+        this.movies.add(newMovie);
     }
 
-    public void showMovies(){
-        if(movies != null){
-           movies.stream().forEach(System.out::println);
-        }
-        else{
+    public void showMovies() {
+        if (movies != null) {
+            movies.stream().forEach(System.out::println);
+        } else {
             throw new RuntimeException("The list is empty");
         }
     }
