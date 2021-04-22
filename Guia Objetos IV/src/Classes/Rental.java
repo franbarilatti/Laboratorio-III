@@ -17,12 +17,12 @@ public class Rental {
     public Rental() {
     }
 
-    public Rental(UUID rentid, Movie movie, Client client, LocalDate rentDate, LocalDate returnDate) {
+    public Rental(Movie movie, Client client) {
         this.rentid = UUID.randomUUID();
         this.movie = movie;
         this.client = client;
-        this.rentDate = rentDate;
-        this.returnDate = returnDate;
+        this.rentDate = LocalDate.now();
+        this.returnDate = LocalDate.now().plusDays(2);
     }
 
     //-------GETTERS AND SETTERS-------//

@@ -3,6 +3,7 @@ package Classes;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.lang.String;
 
 public class VideoStore {
     //-------ATTRIBUTES-------//
@@ -54,8 +55,18 @@ public class VideoStore {
                 "\n}";
     }
 
-    public ArrayList<Rental> addClientRent(Rental newRent){
+    //-------RENTS METHODS-------//
 
+    /*public Rental serchRent(String clientName){
+
+    }*/
+
+    public void addClientRent(Rental newRent){
+        rents.add(newRent);
+    }
+
+    public void addRent(Rental newRent){
+        rents.add(newRent);
     }
 
     public void showRent(){
@@ -82,7 +93,28 @@ public class VideoStore {
         }
     }
 
-    public void showMostRentMovies(){
+   /* public void showMostRentMovies(){
 
+    }*/
+
+    //-------MOVIE METHODS-------//
+    public void addMovie(Movie newMovie){
+        movies.add(newMovie);
     }
+
+    public void showMovies(){
+        if(movies != null){
+           movies.stream().forEach(System.out::println);
+        }
+        else{
+            throw new RuntimeException("The list is empty");
+        }
+    }
+
+    //-------CLIENT METHODS-------//
+    /*public Client searchClient(String name){
+        clients.stream().sorted(Client cl)
+    }*/
+
+
 }

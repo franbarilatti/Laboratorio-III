@@ -81,18 +81,8 @@ public class Client {
                 "\n}";
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof Client){
-            Client other = (Client) obj;
-            if (this.
-        }
-    }
-
-
-    public ArrayList<Rental> addRent(Rental newRent){
+    public void addRent(Rental newRent){
         this.rents.add(newRent);
-        return rents;
     }
 
     public void showRent(){
