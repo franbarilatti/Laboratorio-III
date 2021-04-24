@@ -2,29 +2,29 @@ package Classes;
 
 import javax.management.remote.NotificationResult;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 public class Client {
 
     //-------ATTRIBUTES-------//
-    public UUID id;
-    public String name;
-    public String phone;
-    public String adress;
-    ArrayList<Rental> rents;
+    private UUID id = UUID.randomUUID();
+    private String name = "";
+    private String phone = "";
+    private String adress = "";
+    private List<Rental> rents = new ArrayList<>();
 
     //-------CONSTRUCTORS-------//
 
     public Client() {
     }
 
-    public Client(UUID id, String name, String phone, String adress,ArrayList<Rental> rents) {
+    public Client(String name, String phone, String adress) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.phone = phone;
         this.adress = adress;
-        this.rents = rents;
     }
 
     //-------GETTERS AND SETTERS-------//
@@ -61,11 +61,11 @@ public class Client {
         this.adress = adress;
     }
 
-    public ArrayList<Rental> getRents() {
+    public List<Rental> getRents() {
         return rents;
     }
 
-    public void setRents(ArrayList<Rental> rents) {
+    public void setRents(List<Rental> rents) {
         this.rents = rents;
     }
 

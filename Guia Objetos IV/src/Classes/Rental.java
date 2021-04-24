@@ -6,11 +6,11 @@ import java.util.UUID;
 
 public class Rental {
     //-------ATTRIBUTES-------//
-    public UUID rentid;
-    public Movie movie;
-    public Client client;
-    public LocalDate rentDate;
-    public LocalDate returnDate;
+    private UUID rentid = UUID.randomUUID();
+    private Movie movie = null;
+    private Client client = null;
+    private LocalDate rentDate = null;
+    private LocalDate returnDate = null;
 
     //-------CONSTRUCTORS-------//
 

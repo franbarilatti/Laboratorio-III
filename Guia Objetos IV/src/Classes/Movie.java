@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class Movie {
     //-------ATTRIBUTES -------//
-    public String title;
-    public LocalDate release;
-    public int duration;
-    public String genre;
-    public String clasif;
-    public String countrie;
-    public String description;
-    public int stock;
-    public int rents;
+    private String title = "";
+    private LocalDate release = null;
+    private int duration = 0;
+    private String genre = "";
+    private String clasif = "";
+    private String countrie = "";
+    private String description = "";
+    private int stock = 0;
+    private int rents = 0;
 
     //-------CONSTRUCTORS-------//
     public Movie() {
@@ -95,6 +95,14 @@ public class Movie {
         this.stock = stock;
     }
 
+    public int getRents() {
+        return rents;
+    }
+
+    public void setRents(int rents) {
+        this.rents = rents;
+    }
+
     //-------METHODS-------//
 
     @Override
@@ -107,7 +115,8 @@ public class Movie {
                 "\nClasification= " + clasif +
                 "\nCountrie= " + countrie +
                 "\nSescription= " + description +
-                "\nStock=" + stock +
+                "\nStock= " + stock +
+                "\nRents= "+ rents +
                 "\n}";
     }
 }

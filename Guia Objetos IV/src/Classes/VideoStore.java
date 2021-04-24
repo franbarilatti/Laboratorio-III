@@ -1,10 +1,9 @@
 package Classes;
 
-import java.time.Clock;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
 import java.lang.String;
-import java.util.List;
+import java.util.stream.Collectors;
 
 public class VideoStore {
     //-------ATTRIBUTES-------//
@@ -24,7 +23,7 @@ public class VideoStore {
     }
 
     //-------GETTERS AND SETTERS-------//
-    public ArrayList<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
 
@@ -32,7 +31,7 @@ public class VideoStore {
         this.movies = movies;
     }
 
-    public ArrayList<Client> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
@@ -40,7 +39,7 @@ public class VideoStore {
         this.clients = clients;
     }
 
-    public ArrayList<Rental> getRents() {
+    public List<Rental> getRents() {
         return rents;
     }
 
@@ -62,9 +61,31 @@ public class VideoStore {
 
     //-------RENTS METHODS-------//
 
-    /*public Rental serchRent(String clientName){
+    public List<Rental> serchClientRents(String clientName){
+        Client c = searchClient(clientName);
+        return this.rents.stream().filter((Rental r)->r.getClient().equals(c)).collect(Collectors.toList());
+    }
 
-    }*/
+    public void createNewRent(String clientName, String movieTitle){
+        Client cl = searchClient(clientName);
+        Movie mv = searchMovie(movieTitle);
+
+        System.out.println(cl.toString());
+        System.out.println(mv.toString());
+
+        if(mv != null && mv.getStock()> 0){
+            if(cl != null){
+                Rental newRent = new Rental(mv,cl);
+                cl.getRents().add(newRent);
+                this.rents.add(newRent);
+                mv.setRents(mv.getRents()+1);
+            }
+            throw new RuntimeException("the client doesn't exist");
+        }
+
+        throw new RuntimeException("The movie doesn't exist or hasn't stock");
+
+    }
 
     public void addClientRent(Rental newRent) {
         rents.add(newRent);
@@ -74,19 +95,19 @@ public class VideoStore {
         rents.add(newRent);
     }
 
-    public void showRent() {
-
-        for (Rental rent : this.rents) {
-            System.out.println(rent.toString());
+    public void showRents() {
+        if (rents != null) {
+            rents.stream().forEach(System.out::println);
+        } else {
+            throw new RuntimeException("The Movie list is empty");
         }
     }
 
-    public void rentsToDay() {
-        for (Rental rent : this.rents) {
-            if (rent.returnDate.equals(LocalDate.now(Clock.systemDefaultZone()))) {
-                System.out.println(rent.toString());
-            }
+    public List<Rental> rentsToDay() {
+        if (rents != null){
+            return rents.stream().filter((Rental rnt) -> rnt.getReturnDate().equals(LocalDate.now())).collect(Collectors.toList());
         }
+        throw new RuntimeException("empty list");
     }
 
     public void showLastClientRent() {
@@ -98,27 +119,56 @@ public class VideoStore {
         }
     }
 
-   /* public void showMostRentMovies(){
+    public List<Movie> sortMostRentsMovies(){
+        List<Movie> sortedMovies = movies;
 
-    }*/
+        return sortedMovies.stream().sorted((Movie m1, Movie m2) -> m2.getRents() - m1.getRents()).collect(Collectors.toList());
+    }
+
+   public void showMostRentMovies(){
+       List<Movie> sortedMovies = sortMostRentsMovies();
+
+       sortedMovies.stream().sorted((Movie m1, Movie m2) -> m2.getRents() - m1.getRents()).forEach(System.out :: println);
+
+   }
 
     //-------MOVIE METHODS-------//
     public void addMovie(Movie newMovie) {
         this.movies.add(newMovie);
-    }
+    } // Add a new movie to the movies List
 
-    public void showMovies() {
+    public void showMovies() {                                       // Show all disponible movies in the VideoStore
         if (movies != null) {
             movies.stream().forEach(System.out::println);
         } else {
-            throw new RuntimeException("The list is empty");
+            throw new RuntimeException("The Movie list is empty");
         }
     }
 
+    public Movie searchMovie(String movieTitle){
+        Optional<Movie> opMovie = this.movies.stream().filter((Movie m)-> m.getTitle().equalsIgnoreCase(movieTitle)).findFirst();
+        return opMovie.isPresent() ? opMovie.get() : null;
+    }
+
     //-------CLIENT METHODS-------//
-    /*public Client searchClient(String name){
-        clients.stream().sorted(Client cl)
-    }*/
+
+    public void addCLient(Client client){
+        this.clients.add(client);
+    }
+
+    public void showClients(){
+        if(this.clients != null){
+            clients.stream().forEach(System.out::println);
+        }
+        else{
+            throw new RuntimeException("The Client Lists is empty");
+        }
+    }
+
+    public Client searchClient(String clientName){
+        Optional<Client> opClient = this.clients.stream().filter((Client c)->c.getName().equalsIgnoreCase(clientName)).findFirst();
+        return opClient.isPresent() ? opClient.get() : null;
+    }
 
 
 }
