@@ -4,7 +4,7 @@ import java.security.PublicKey;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class Rental {
+public class Rent {
     //-------ATTRIBUTES-------//
     private UUID rentid = UUID.randomUUID();
     private Movie movie = null;
@@ -14,10 +14,10 @@ public class Rental {
 
     //-------CONSTRUCTORS-------//
 
-    public Rental() {
+    public Rent() {
     }
 
-    public Rental(Movie movie, Client client) {
+    public Rent(Movie movie, Client client) {
         this.rentid = UUID.randomUUID();
         this.movie = movie;
         this.client = client;
@@ -72,10 +72,10 @@ public class Rental {
 
     @Override
     public String toString() {
-        return "Rental{" +
+        return "Rent{" +
                 "\nRentid= " + rentid +
-                "\nMovie= " + movie +
-                "\nClient= " + client +
+                "\nMovie= " + movie.getTitle() +
+                "\nClient= " + client.getName() +
                 "\nRentDate= " + rentDate +
                 "\nReturnDate= " + returnDate +
                 "\n}";

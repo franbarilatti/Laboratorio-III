@@ -1,9 +1,7 @@
 package Classes;
 
-import javax.management.remote.NotificationResult;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 public class Client {
@@ -13,7 +11,7 @@ public class Client {
     private String name = "";
     private String phone = "";
     private String adress = "";
-    private List<Rental> rents = new ArrayList<>();
+    private List<Rent> rents = new ArrayList<>();
 
     //-------CONSTRUCTORS-------//
 
@@ -61,11 +59,11 @@ public class Client {
         this.adress = adress;
     }
 
-    public List<Rental> getRents() {
+    public List<Rent> getRents() {
         return rents;
     }
 
-    public void setRents(List<Rental> rents) {
+    public void setRents(List<Rent> rents) {
         this.rents = rents;
     }
 
@@ -81,7 +79,7 @@ public class Client {
                 "\n}";
     }
 
-    public void addRent(Rental newRent){
+    public void addRent(Rent newRent){
         this.rents.add(newRent);
     }
 
@@ -90,7 +88,7 @@ public class Client {
     }
 
     public void showAllRents(){
-        for (Rental rent : this.rents){
+        for (Rent rent : this.rents){
             System.out.println(rent.toString());
         }
     }

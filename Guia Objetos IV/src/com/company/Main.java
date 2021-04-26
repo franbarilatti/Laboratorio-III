@@ -32,7 +32,7 @@ public class Main {
         netflixPlus.addCLient(vader);
         netflixPlus.addCLient(luke);
 
-        System.out.println("Mostrando la lista de Clientes: ");
+
 
 
         netflixPlus.createNewRent("Harry Postre","mortal kombat");
@@ -43,8 +43,12 @@ public class Main {
         netflixPlus.createNewRent("John Salchichon","Harry potter");
         netflixPlus.createNewRent("John Salchichon","mortal kombat");
         netflixPlus.createNewRent("Darth Vader","Harry potter");
+        netflixPlus.createNewRent("bruno diaz","Harry potter");
+        netflixPlus.createNewRent("Luke Skywalker","WORLD WAR Z");
+        netflixPlus.createNewRent("bruno diaz","inglorious bastards");
 
-        netflixPlus.showRents();
+        netflixPlus.showMostRentMovies();
+
 
     }
 }

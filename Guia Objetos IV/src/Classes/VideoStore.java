@@ -9,14 +9,14 @@ public class VideoStore {
     //-------ATTRIBUTES-------//
     private List<Movie> movies = new ArrayList<>();
     private List<Client> clients = new ArrayList<>();
-    private List<Rental> rents = new ArrayList<>();
+    private List<Rent> rents = new ArrayList<>();
 
     //-------CONSTRUCTORS-------//
 
     public VideoStore() {
     }
 
-    public VideoStore(ArrayList<Movie> movies, ArrayList<Client> clients, ArrayList<Rental> rents) {
+    public VideoStore(ArrayList<Movie> movies, ArrayList<Client> clients, ArrayList<Rent> rents) {
         this.movies = movies;
         this.clients = clients;
         this.rents = rents;
@@ -39,11 +39,11 @@ public class VideoStore {
         this.clients = clients;
     }
 
-    public List<Rental> getRents() {
+    public List<Rent> getRents() {
         return rents;
     }
 
-    public void setRents(ArrayList<Rental> rents) {
+    public void setRents(ArrayList<Rent> rents) {
         this.rents = rents;
     }
 
@@ -61,37 +61,41 @@ public class VideoStore {
 
     //-------RENTS METHODS-------//
 
-    public List<Rental> serchClientRents(String clientName){
+    public List<Rent> serchClientRents(String clientName){
         Client c = searchClient(clientName);
-        return this.rents.stream().filter((Rental r)->r.getClient().equals(c)).collect(Collectors.toList());
+        return this.rents.stream().filter((Rent r)->r.getClient().equals(c)).collect(Collectors.toList());
     }
 
     public void createNewRent(String clientName, String movieTitle){
         Client cl = searchClient(clientName);
         Movie mv = searchMovie(movieTitle);
 
-        System.out.println(cl.toString());
-        System.out.println(mv.toString());
-
-        if(mv != null && mv.getStock()> 0){
-            if(cl != null){
-                Rental newRent = new Rental(mv,cl);
+        if(cl != null){
+            if(mv != null && mv.getStock()>0){
+                Rent newRent = new Rent(mv,cl);
                 cl.getRents().add(newRent);
                 this.rents.add(newRent);
                 mv.setRents(mv.getRents()+1);
+                mv.setStock(mv.getStock()-1);
             }
-            throw new RuntimeException("the client doesn't exist");
+            else{
+                throw new RuntimeException("the movie doesn't exist");
+            }
+
+        }else
+        {
+            System.out.println("The neme ingressed doesn't exist. We have creted a new client with this name: "+clientName);
+            Client newCL = new Client();
+            newCL.setName(clientName);
+            this.clients.add(newCL);
         }
-
-        throw new RuntimeException("The movie doesn't exist or hasn't stock");
-
     }
 
-    public void addClientRent(Rental newRent) {
+    public void addClientRent(Rent newRent) {
         rents.add(newRent);
     }
 
-    public void addRent(Rental newRent) {
+    public void addRent(Rent newRent) {
         rents.add(newRent);
     }
 
@@ -103,19 +107,20 @@ public class VideoStore {
         }
     }
 
-    public List<Rental> rentsToDay() {
+    public List<Rent> rentsToDay() {
         if (rents != null){
-            return rents.stream().filter((Rental rnt) -> rnt.getReturnDate().equals(LocalDate.now())).collect(Collectors.toList());
+            return rents.stream().filter((Rent rnt) -> rnt.getReturnDate().equals(LocalDate.now())).collect(Collectors.toList());
         }
         throw new RuntimeException("empty list");
     }
 
-    public void showLastClientRent() {
-        int index;
-        for (Client c : this.clients) {
-            for (index = 0; index < 10; index++) {
-                c.showRent();
-            }
+    public void showLastClientRent(String clientName) {
+        Client cl = searchClient(clientName);
+        if (cl != null){
+            cl.showAllRents();
+        }
+        else{
+            throw new RuntimeException("the client doesn't exist");
         }
     }
 
@@ -128,7 +133,7 @@ public class VideoStore {
    public void showMostRentMovies(){
        List<Movie> sortedMovies = sortMostRentsMovies();
 
-       sortedMovies.stream().sorted((Movie m1, Movie m2) -> m2.getRents() - m1.getRents()).forEach(System.out :: println);
+       sortedMovies.stream().forEach(System.out :: println);
 
    }
 
