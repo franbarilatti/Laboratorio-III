@@ -6,7 +6,6 @@ public class Buisiness extends Client{
     //-------ATTRIBUTES-------//
 
     private ArrayList<Order> orders = new ArrayList<>();
-    private final double discount = 0.15;
 
     //-------CONSTRUCTORS-------//
 
@@ -19,10 +18,6 @@ public class Buisiness extends Client{
 
     //-------GETTERS AND SETTERS-------//
 
-    public double getDiscount() {
-        return discount;
-    }
-
     public ArrayList<Order> getOrders() {
         return orders;
     }
@@ -33,7 +28,6 @@ public class Buisiness extends Client{
     public String toString() {
         return super.toString() + "Buisiness{" +
                 "orders=" + orders +
-                ", discount=" + discount +
                 '}';
     }
 }

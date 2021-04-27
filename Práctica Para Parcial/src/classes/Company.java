@@ -51,6 +51,15 @@ public class Company {
         return opClient.isPresent()?opClient.get():null;
     }
 
+    public void showClients(){
+        if(this.clients != null){
+            this.clients.stream().forEach(System.out::println);
+        }
+        else {
+            throw new RuntimeException("The list is empty");
+        }
+    }
+
     //-------PRODUCT METHODS-------//
 
     public void addProduct(Product newProduct){
@@ -62,19 +71,54 @@ public class Company {
         return opProduct.isPresent()?opProduct.get():null;
     }
 
+    public void showProducts(){
+        if(this.products != null){
+            this.products.stream().forEach(System.out::println);
+        }
+        else {
+            throw new RuntimeException("The list is empty");
+        }
+    }
+
     //-------ORDER METHODS-------//
     public void addOrder(Order newOrder){
         this.orders.add(newOrder);
     }
 
-    public void registOrder(String clientName,String productName,double distance,double deliveryPrice){
-        
+    public void showOrders(){
+        if(this.orders != null){
+            this.orders.stream().forEach(System.out::println);
+        }
+        else {
+            throw new RuntimeException("The list is empty");
+        }
     }
 
-    public void createNewOrder(String clientName,String productName,double distance,double deliveryPrice){
+    public void registOrderBuisiness(Client client,Product product,double distance){
+        Order newOrder = new Order(client,product,distance);
+        if(client instanceof Buisiness){
+            double newDeliveryPrice = newOrder.getDeliveryPrice() / 1.15;
+            newOrder.setDeliveryPrice(newDeliveryPrice);
+            ((Buisiness) client).getOrders().add(newOrder);
+        }
+        this.orders.add(newOrder);
+    }
+
+    public void registOrderParticular(Client client,Product product,double distance){
+        Order newOrder = new Order(client,product,distance);
+        if(client instanceof Particular){
+            ((Particular) client).getOrders().add(newOrder);
+        }
+        this.orders.add(newOrder);
+    }
+
+    public void createNewOrder(String clientName,String productName,double distance){
         Client client = searchClient(clientName);
         Product product = searchProduct(productName);
-
-
+        if (client instanceof Buisiness) {
+            registOrderBuisiness(client, product, distance);
+        } else {
+            registOrderParticular(client, product, distance);
+        }
     }
 }
