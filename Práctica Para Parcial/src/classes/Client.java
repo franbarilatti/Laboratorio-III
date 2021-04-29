@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.ArrayList;
+
 public class Client {
 
     //-------ATTRIBUTES-------//
@@ -7,7 +9,8 @@ public class Client {
     private String name = "";
     private String adress = "";
     private String phone = "";
-
+    private ArrayList<Order> orders = new ArrayList<>();
+    private double totalAmount = orders.stream().forEach((Order o)->o.getTotalPrice());
     //-------CONSTRUCTORS-------//
 
     public Client() {
@@ -45,6 +48,9 @@ public class Client {
         this.phone = phone;
     }
 
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
     //-------METHODS-------//
 
 
@@ -55,5 +61,14 @@ public class Client {
                 "\nAdress='" + adress +
                 "\nPhone='" + phone +
                 "\n}";
+    }
+
+    public void showClientOrders(){
+        if(this.orders != null){
+            this.orders.stream().forEach(System.out::println);
+        }
+        else {
+            throw new RuntimeException("The list is empty");
+        }
     }
 }

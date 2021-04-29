@@ -3,9 +3,6 @@ package classes;
 import java.util.ArrayList;
 
 public class Buisiness extends Client{
-    //-------ATTRIBUTES-------//
-
-    private ArrayList<Order> orders = new ArrayList<>();
 
     //-------CONSTRUCTORS-------//
 

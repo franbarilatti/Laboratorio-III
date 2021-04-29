@@ -1,5 +1,7 @@
 package classes;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -47,7 +49,9 @@ public class Company {
     }
 
     public Client searchClient(String clientName){
-        Optional<Client> opClient = this.clients.stream().filter((Client c)->c.getName().equalsIgnoreCase(clientName)).findFirst();
+        Optional<Client> opClient = this.clients.stream().
+                filter((Client c)->c.getName().equalsIgnoreCase(clientName)).
+                findFirst();
         return opClient.isPresent()?opClient.get():null;
     }
 
@@ -58,6 +62,13 @@ public class Company {
         else {
             throw new RuntimeException("The list is empty");
         }
+    }
+
+    public Client clientWithMoreOrders(){
+        Optional<Client> opcClient = this.clients.stream().
+                sorted((Client c1, Client c2)->c2.getOrders().size()-c1.getOrders().size()).
+                findFirst();
+        return opcClient.get();
     }
 
     //-------PRODUCT METHODS-------//
